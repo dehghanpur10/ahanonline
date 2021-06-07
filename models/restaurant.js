@@ -6,10 +6,13 @@ const Restaurant = new Schema({
         required: true,
         type: String
     },
-    Foods:[{
-        required: true,
+    foods:[{
         type: Schema.Types.ObjectId,
         ref: 'Food'
+    }],
+    orders:[{
+        type: Schema.Types.ObjectId,
+        ref: 'Order'
     }]
 
 });

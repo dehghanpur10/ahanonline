@@ -9,11 +9,12 @@ const helmet = require('helmet');
 const xss = require("xss-clean");
 const hpp = require("hpp");
 
-const route = require('./routes/route.js');
+const route = require('./routes/main');
 
 const app = express();
 
 const port = process.env.PORT || 8080;
+const DB_url = process.env.DB || 'mongodb://127.0.0.1:27017/res?compressors=zlib&gssapiServiceName=mongodb';
 
 
 app.use(bodyParser.json()); // application/json
@@ -38,7 +39,7 @@ app.use((error, req, res, next) => {
 //database
 mongoose
     .connect(
-        process.env.DB
+        DB_url
     )
     .then(result => {
         const server = app.listen(port);
